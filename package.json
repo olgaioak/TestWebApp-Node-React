@@ -1,0 +1,25 @@
+{
+  "name": "testwebapp-node-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olgaioak/TestWebApp-Node-React.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/olgaioak/TestWebApp-Node-React/issues"
+  },
+  "homepage": "https://github.com/olgaioak/TestWebApp-Node-React#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.5.8",
+    "nodemon": "^2.0.4"
+  }
+}
