@@ -1,41 +1,26 @@
-const getDb = require('../util/database').getDb;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-class Contact {
-    constructor(name, email, address, number) {
-        this.name = name;
-        this.email = email;
-        this.address = address;
-        this.number = number;
-      }
+const postSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: true
+    },
+    email: {
+      type: String,
+      required: true
+    },
+    address: {
+      type: String,
+      required: false
+    },
+    number: {
+      type: Object,
+      required: false
+    }
+  },
+  { timestamps: true }
+);
 
-    save() {
-        const db = getDb();
-        return db
-          .collection('contacts')
-          .insertOne(this)
-          .then(result => {
-            console.log(result);
-          })
-          .catch(err => {
-            console.log(err);
-          });
-      }
-
-      static fetchAll() {
-        const db = getDb();
-        return db
-          .collection('contacts')
-          .find()
-          .toArray()
-          .then(contacts => {
-            console.log(contacts);
-            return contacts;
-          })
-          .catch(err => {
-            console.log(err);
-          });
-      }
-
-}
-
-module.exports = Contact;
+module.exports = mongoose.model('Contact', postSchema);

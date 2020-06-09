@@ -11,7 +11,6 @@ exports.postAddContact = (req, res, next) => {
     .then(result => {
       // console.log(result);
       console.log('Created contact');
-      res.redirect('/');
     })
     .catch(err => {
       console.log(err);
@@ -19,13 +18,29 @@ exports.postAddContact = (req, res, next) => {
 };
 
 exports.getContacts = (req, res, next) => {
-    Contact.fetchAll()
+    Contact.find()
       .then(contacts => {
         res.json(200, {
           contacts: contacts,
           pageTitle: 'All Contacts',
           path: '/'
         });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  
+exports.deleteContact = (req, res, next) => {
+    const contactId = req.params.contactId;
+    Contact.findById(contactId)
+      .then(contact => {
+        return Contact.findByIdAndRemove(contactId);
+      })
+      .then(result =>{
+        console.log(result);
+        res.status(200).json({message:'Contact deleted!'});
       })
       .catch(err => {
         console.log(err);
